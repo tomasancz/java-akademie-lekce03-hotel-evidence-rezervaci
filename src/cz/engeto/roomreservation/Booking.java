@@ -14,20 +14,24 @@ public class Booking {
     private Room room;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
-    private boolean isBusinessTrip;
+    // private boolean isBusinessTrip;
+    private TripPurpose tripPurpose;
     DateTimeFormatter czechFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     // region Constructors
-    public Booking(Guest guest, Room room,  LocalDate checkInDate, LocalDate checkOutDate, boolean isBusinessTrip) {
+    // public Booking(Guest guest, Room room,  LocalDate checkInDate, LocalDate checkOutDate, boolean isBusinessTrip) {
+    public Booking(Guest guest, Room room,  LocalDate checkInDate, LocalDate checkOutDate, TripPurpose tripPurpose) {
         this.guestList.add(guest);
         this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.isBusinessTrip = isBusinessTrip;
+        //this.isBusinessTrip = isBusinessTrip;
+        this.tripPurpose = tripPurpose;
     }
 
     public Booking(Guest guest, Room room, LocalDate checkInDate, LocalDate checkOutDate) {
-        this(guest, room, checkInDate, checkOutDate, false);
+        //  this(guest, room, checkInDate, checkOutDate, false);
+        this(guest, room, checkInDate, checkOutDate, TripPurpose.VACATION);
     }
     // endregion
 
@@ -60,12 +64,20 @@ public class Booking {
         this.checkOutDate = checkOutDate;
     }
 
-    public boolean isBusinessTrip() {
-        return isBusinessTrip;
+//    public boolean isBusinessTrip() {
+//        return isBusinessTrip;
+//    }
+//
+//    public void setBusinessTrip(boolean businessTrip) {
+//        isBusinessTrip = businessTrip;
+//    }
+
+    public TripPurpose getTripPurpose() {
+        return tripPurpose;
     }
 
-    public void setBusinessTrip(boolean businessTrip) {
-        isBusinessTrip = businessTrip;
+    public void setTripPurpose(TripPurpose tripPurpose) {
+        this.tripPurpose = tripPurpose;
     }
 
     // endregion
@@ -105,8 +117,9 @@ public class Booking {
 
     public String getDescription() {
         StringBuilder description = new StringBuilder("Rezervace pokoje č." + room.getRoomNumber() +
-                " na termín /" + getCheckInDate().format(czechFormat) + " - " + getCheckOutDate().format(czechFormat) +
-                "/" + (isBusinessTrip() ? "(služební cesta)" : "") + " pro ");
+                " na termín " + getCheckInDate().format(czechFormat) + "-" + getCheckOutDate().format(czechFormat) +
+                //     "/" + (isBusinessTrip() ? "(služební cesta)" : "") + " pro ");
+                ": " + getTripPurpose() + " pobyt" + " pro ");
         Iterator<Guest> iterator = guestList.iterator();
         while (iterator.hasNext()){
             description.append(iterator.next().getDescription());

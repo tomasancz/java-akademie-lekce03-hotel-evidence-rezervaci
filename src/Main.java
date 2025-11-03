@@ -1,11 +1,7 @@
-import cz.engeto.roomreservation.Booking;
-import cz.engeto.roomreservation.BookingManager;
-import cz.engeto.roomreservation.Guest;
-import cz.engeto.roomreservation.Room;
+import cz.engeto.roomreservation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,13 +44,17 @@ public class Main {
         Room room2 = new Room(2, BigDecimal.valueOf(3500), 2, true, true);
         Room room3 = new Room(3, BigDecimal.valueOf(4200), 2, true, false);
 
-        bookings.addBooking(new Booking(guest1,  room3, LocalDate.of(2023,6,1), LocalDate.of(2023,6,7), true));
-        bookings.addBooking(new Booking(guest2,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), false));
-        Booking booking3 = new Booking(guest3,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), true);
+        //        bookings.addBooking(new Booking(guest1,  room3, LocalDate.of(2023,6,1), LocalDate.of(2023,6,7), true));
+        //        bookings.addBooking(new Booking(guest2,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), false));
+        //        Booking booking3 = new Booking(guest3,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), true);
+        bookings.addBooking(new Booking(guest1,  room3, LocalDate.of(2023,6,1), LocalDate.of(2023,6,7), TripPurpose.BUSINESS));
+        bookings.addBooking(new Booking(guest2,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), TripPurpose.VACATION));
+        Booking booking3 = new Booking(guest3,  room2, LocalDate.of(2023,7,18), LocalDate.of(2023,7,21), TripPurpose.BUSINESS);
         booking3.addGuest(guest1);
         bookings.addBooking(booking3);
         for (int i=1; i < 20; i+=2){
-            bookings.addBooking(new Booking(guest3,  room3, LocalDate.of(2023,8,i), LocalDate.of(2023,8,i+1), false));
+        //        bookings.addBooking(new Booking(guest3,  room3, LocalDate.of(2023,8,i), LocalDate.of(2023,8,i+1), false));
+            bookings.addBooking(new Booking(guest3,  room3, LocalDate.of(2023,8,i), LocalDate.of(2023,8,i+1), TripPurpose.VACATION));
         }
 
     }

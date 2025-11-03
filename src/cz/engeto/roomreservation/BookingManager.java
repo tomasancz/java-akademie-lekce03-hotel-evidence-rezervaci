@@ -32,7 +32,8 @@ public class BookingManager {
     public int getNumberOfWorkingBookings() {
         int workingBookings = 0;
         for (Booking booking : bookingList) {
-            if (booking.isBusinessTrip()) {
+        //    if (booking.isBusinessTrip()) {
+              if (booking.getTripPurpose() == TripPurpose.BUSINESS) {
                 workingBookings++;
             }
         }
@@ -54,7 +55,8 @@ public class BookingManager {
             if (numberOfHolidays >= topNumber) {
                 break;
             }
-            if(!booking.isBusinessTrip()){
+            // if(!booking.isBusinessTrip()){
+            if(booking.getTripPurpose() == TripPurpose.VACATION){
                 topNHolidayBookings.add(booking);
                 numberOfHolidays++;
             }
